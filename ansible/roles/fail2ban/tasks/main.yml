@@ -1,0 +1,14 @@
+---
+
+- name: Install fail2ban
+  apt: pkg=fail2ban state=present update_cache=yes
+  when: ansible_os_family == "Debian"
+  sudo: yes
+  tags:
+    - fail2ban
+- name: Fail2ban configuration file
+  copy: src=etc/fail2ban/jail.local dest=/etc/fail2ban/jail.local owner=root group=root mode=0644
+  sudo: yes
+  tags:
+    - fail2ban
+
